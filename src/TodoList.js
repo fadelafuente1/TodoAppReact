@@ -9,6 +9,7 @@ export class TodoList extends React.Component{
             items: []
         };
         this.addItem = this.addItem.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
     }
     addItem(e){
         if(this._inputElement.value !== ""){
@@ -27,6 +28,14 @@ export class TodoList extends React.Component{
         e.preventDefault();
         
     }
+    deleteItem(key){
+        var filteredItems = this.state.items.filter(function (item){
+            return (item.key !== key);
+        });
+        this.setState({
+            items: filteredItems
+        })
+    }
     render(){
         return(
             <div className="TodoListMain">
@@ -36,7 +45,7 @@ export class TodoList extends React.Component{
                         <button type="submit">add</button>
                     </form>
                 </div>
-                <TodoItems entries={this.state.items} />
+                <TodoItems entries={this.state.items} delete={this.deleteItem} />
             </div>
         );
     }
