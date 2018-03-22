@@ -1,6 +1,7 @@
 import React from 'react';
+import "./TodoList.css";
 
-export class TodoItems extends React.Component{
+export default class TodoItems extends React.Component{
     createTask(item){
         return <li key={item.key}> {item.text} </li>
     }
